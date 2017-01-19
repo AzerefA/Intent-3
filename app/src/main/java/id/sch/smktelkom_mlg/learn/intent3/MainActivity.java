@@ -19,6 +19,21 @@ public class MainActivity extends AppCompatActivity {
                 dialPhoneNumber("0341712500");
             }
         });
+
+        findViewById(R.id.imageViewSMS).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                composeSmsMassage("Pesan Dari SMK Telkom Malang");
+            }
+        });
+    }
+
+    private void composeSmsMassage(String massage) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra("sms_body", massage);
+        if (intent.resolveActivity(getPackageManager()) != null)
+            startActivity(intent);
     }
 
     private void dialPhoneNumber(String phoneNumber) {
